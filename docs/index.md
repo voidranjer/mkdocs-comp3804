@@ -64,7 +64,9 @@ First, notice the bijection between the graph on the left and the graph on the r
 
 ![alt text](image-2.png)
 
-Given that these are Cartesian grids with the top right corner being $(n,n)$ and the bottom left corner being $(0,0)$.
+Given that these are Cartesian grids with the top right corner being $(n,n)$ and the bottom left corner being $(0,0)$:
+
+For every graph that adheres to the $k$-Lpaths, we can reflect it along the diagonal to get a graph that adheres to the $(n-k)$-Lpaths. This is because the reflection of a path that goes up will go right, and vice versa. This is a bijection because the reflection is reversible. We can define such a matrix to be the reflection matrix.
 
 \[
 \mathbf{A} = 
@@ -73,3 +75,55 @@ Given that these are Cartesian grids with the top right corner being $(n,n)$ and
 1 & 0
 \end{bmatrix}
 \]
+
+Then, for every vector that represents each path item, we can multiply it by the reflection matrix to get the reflected path. 
+
+1. **Transforming \((0, 1)\) to \((1, 0)\)**:
+
+\[
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+=
+\begin{bmatrix}
+(0 \times 0) + (1 \times 1) \\
+(1 \times 0) + (0 \times 1)
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\]
+
+2. **Transforming \((1, 0)\) to \((0, 1)\)**:
+
+\[
+\begin{bmatrix}
+0 & 1 \\
+1 & 0
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+=
+\begin{bmatrix}
+(0 \times 1) + (1 \times 0) \\
+(1 \times 1) + (0 \times 0)
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\]
+
+**In conclusion:** For any arrangement of $k$-Lpaths, we can reflect it along the diagonal to get an $(n-k)$-Lpaths arrangement. This is a bijection because the reflection is reversible. Therefore, the number of $k$-Lpaths is equal to the number of $(n-k)$-Lpaths.
