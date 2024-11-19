@@ -127,3 +127,15 @@ Then, for every vector that represents each path item, we can multiply it by the
 \]
 
 **In conclusion:** For any arrangement of $k$-Lpaths, we can reflect it along the diagonal to get an $(n-k)$-Lpaths arrangement. This is a bijection because the reflection is reversible. Therefore, the number of $k$-Lpaths is equal to the number of $(n-k)$-Lpaths.
+
+---
+
+## Question 4
+
+- Run DFS, from A, on the graph and classify each edge as being either: Tree edge, Forward edge, Back edge, or Cross edge. Show and argue: the algorithm execution,   pre(v) and post(v) time intervals and the edge-classification. (An edge type may or may not appear in a particular graph.)
+
+- Find a topological order of the nodes or argue that no such order can exist. How does the DFS help detect that?
+
+- Consider two intervals $[pre(u), post(u)]$ and $[pre(v), post(v)]$ for vertices $u$ and $v$, respectively. Argue precisely in your own words, why the intervals cannot overlap (other than if one is contained in the other).
+
+![alt text](image-3.png)
