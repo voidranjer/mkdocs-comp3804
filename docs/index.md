@@ -139,3 +139,23 @@ Then, for every vector that represents each path item, we can multiply it by the
 - Consider two intervals $[pre(u), post(u)]$ and $[pre(v), post(v)]$ for vertices $u$ and $v$, respectively. Argue precisely in your own words, why the intervals cannot overlap (other than if one is contained in the other).
 
 ![alt text](image-3.png)
+
+---
+
+**^^==Answer==^^:**
+
+The diagram below breaks down the execution of DFS with the time intervals annotated in **blue** and **red**.
+
+**Blue** represents the pre-visit time, while **red** represents the post-visit time.
+
+The different types of edges *(tree, forward, back, cross)* are also described in the legend section of the image below.
+
+![alt text](image-6.png)
+
+![alt text](image-7.png)
+
+**Arguments:** I will not provide an exhaustive list of arguments for each edge. However, I will provide an example:
+
+Observe that with edge $A \rightarrow F$, pre($v$) $= 1$, post($v$) $= 14$, pre($u$) $= 12$, post($u$) $= 13$, such that $\text{pre}(v) < \text{pre}(u) < \text{post}(u) < \text{post}(v)$.
+
+---
