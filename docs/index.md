@@ -28,7 +28,7 @@ However, we only care about the shortest path between each vertex $k$ to the $go
 
 This way, instead of computing $k$ number of shortest path graphs, we are only computing **exactly 1** shortest path graph. The time complexity of this solution is $O((|E|+|V|) \times \log |V|)$, which is the same as Dijkstra's algorithm.
 
-**Correctness:** The correctness of this algorithm is guaranteed by the fact that the shortest path from a source vertex to a destination vertex is the same as the shortest path from the destination vertex to the source vertex when the direction of the edges is reversed.
+**Correctness:** The correctness of this algorithm is guaranteed by the fact that the shortest path from a source vertex to a destination vertex is the same as the shortest path from the destination vertex to the source vertex when the direction of the edges is reversed. This is because the distance it takes to travel from $A$ to $B$ is the same as the distance it takes to travel from $B$ to $A$ when the direction of the edges is reversed. This is a bijection, as for every path from $A$ to $B$, there is a corresponding path from $B$ to $A$, of the same length or cost.
 
 ---
 
