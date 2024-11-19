@@ -134,9 +134,6 @@ Then, for every vector that represents each path item, we can multiply it by the
 
 - Run DFS, from A, on the graph and classify each edge as being either: Tree edge, Forward edge, Back edge, or Cross edge. Show and argue: the algorithm execution,   pre(v) and post(v) time intervals and the edge-classification. (An edge type may or may not appear in a particular graph.)
 
-- Find a topological order of the nodes or argue that no such order can exist. How does the DFS help detect that?
-
-- Consider two intervals $[pre(u), post(u)]$ and $[pre(v), post(v)]$ for vertices $u$ and $v$, respectively. Argue precisely in your own words, why the intervals cannot overlap (other than if one is contained in the other).
 
 ![alt text](image-3.png)
 
@@ -157,5 +154,47 @@ The different types of edges *(tree, forward, back, cross)* are also described i
 **Arguments:** I will not provide an exhaustive list of arguments for each edge. However, I will provide an example:
 
 Observe that with edge $A \rightarrow F$, pre($v$) $= 1$, post($v$) $= 14$, pre($u$) $= 12$, post($u$) $= 13$, such that $\text{pre}(v) < \text{pre}(u) < \text{post}(u) < \text{post}(v)$.
+
+---
+
+- Find a topological order of the nodes or argue that no such order can exist. How does the DFS help detect that?
+
+---
+
+**^^==Answer==^^:**
+
+There is this algorithm that we can run alongside DFS to determine if a graph has cycles or not:
+
+![alt text](image-4.png)
+
+If we detect a cycle, then we can conclude that no topological order exists. This is because a topological order is only possible in a Directed Acyclic Graph (DAG). If a cycle exists, then the graph is not a DAG, and therefore, no topological order exists.
+
+![alt text](image-5.png)
+
+---
+
+- Consider two intervals $[pre(u), post(u)]$ and $[pre(v), post(v)]$ for vertices $u$ and $v$, respectively. Argue precisely in your own words, why the intervals cannot overlap (other than if one is contained in the other).
+
+---
+
+**^^==Answer==^^:**
+
+The intervals $[pre(u), post(u)]$ and $[pre(v), post(v)]$ for vertices $u$ and $v$, respectively, cannot overlap because of the following reasons:
+
+1. **Vertex $u$ is a descendant of vertex $v$:** If vertex $u$ is a descendant of vertex $v$, then the pre-visit time of $u$ will be greater than the pre-visit time of $v$. This is because the pre-visit time of a descendant is always greater than the pre-visit time of its ancestor. Therefore, the interval $[pre(u), post(u)]$ will be contained within the interval $[pre(v), post(v)]$.
+
+2. **Vertex $u$ is an ancestor of vertex $v$:** If vertex $u$ is an ancestor of vertex $v$, then the post-visit time of $u$ will be less than the post-visit time of $v$. This is because the post-visit time of an ancestor is always less than the post-visit time of its descendant. Therefore, the interval $[pre(u), post(u)]$ will be contained within the interval $[pre(v), post(v)]$.
+
+3. **Vertex $u$ and $v$ are unrelated:** If vertex $u$ and $v$ are unrelated, then the intervals $[pre(u), post(u)]$ and $[pre(v), post(v)]$ will not overlap. This is because the pre-visit and post-visit times of unrelated vertices are independent of each other.
+
+**Proof by exhaustion:** The only two ways to have no overlap is for $\text{post}(u) < \text{pre}(v)$ or $\text{post}(v) < \text{pre}(u)$ *(assuming pre-visit always has to be less than post-visit for the same node)*. For example: $[pre(u), post(u)]$ and $[pre(v), post(v)]$ is $[1, 2]$ and $[3, 4]$.
+
+Assume we are entering vertex $u$. This sets the pre-visit time of $u$ to be 1. Then, we proceed to vertex $v$, which is a descendant of $u$. This sets the pre-visit time of $v$ to be 2. Note that it is **impossible** to set the post-visit time of $u$ **before** setting the post-visit time of $v$ if $v$ is a descendant of $u$. This is because by definition, the post-visit time of a vertex is only set once all descendants of that vertex have been visited.
+
+Since we **must** set the post-visit time of $v$ (which is the descendant) before setting the post-visit time of $u$ (which is the ancestor), combined with the fact that the clock interval **must** increase at each turn, we see that $post(v) < post(u)$.
+
+Therefore, the intervals $[pre(u), post(u)]$ and $[pre(v), post(v)]$ for vertices $u$ and $v$, respectively, cannot overlap unless one is contained within the other.
+
+
 
 ---
