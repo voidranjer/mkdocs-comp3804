@@ -169,7 +169,17 @@ There is this algorithm that we can run alongside DFS to determine if a graph ha
 
 If we detect a cycle, then we can conclude that no topological order exists. This is because a topological order is only possible in a Directed Acyclic Graph (DAG). If a cycle exists, then the graph is not a DAG, and therefore, no topological order exists.
 
-![alt text](image-5.png)
+![alt text](image-8.png)
+
+Notice that we have at least one cycle in the graph, as highlighted by the edges in red.
+
+**^^Therefore, we can expect that no topological order exists for this graph.^^**
+
+![alt text](image-9.png)
+
+The diagram above illustrates an attempt at creating such a topological order. However, the presence of cycles has made it so that there are backwards edges, which is not allowed in a topological order *(as per the slides - edges can only go from left to right)*.
+
+I started by drawing only the edges of the DFS, but as soon as we start adding the rest of the edges, you see edges travel from right to left, **which is disallowed**. So this is **not** a valid topological mapping.
 
 ---
 
