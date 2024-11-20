@@ -181,6 +181,12 @@ The diagram above illustrates an attempt at creating such a topological order. H
 
 I started by drawing only the edges of the DFS, but as soon as we start adding the rest of the edges, you see edges travel from right to left, **which is disallowed**. So this is **not** a valid topological mapping.
 
+Formally, after we have performed DFS *(with time interval annotations)*, we iterate through each edge in the graph. As long $\exists (\text{pre}(u) < \text{pre}(v) < \text{post}(v) < \text{post}(u))$, then the graph contains a **cycle**.
+
+**Counterexample:** Observe that if we select the edge that connects $D \rightarrow A$, then $v=D, u=A$.
+
+$\text{pre}(u)=1, \text{pre}(v)=6, \text{post}(v)=7, \text{post}(u)=14$. Then, $\text{pre}(u) < \text{pre}(v) < \text{post}(v) < \text{post}(u)$, because $1 < 6 < 7 < 14$. Therefore, the graph contains a cycle.
+
 ---
 
 - Consider two intervals $[pre(u), post(u)]$ and $[pre(v), post(v)]$ for vertices $u$ and $v$, respectively. Argue precisely in your own words, why the intervals cannot overlap (other than if one is contained in the other).
