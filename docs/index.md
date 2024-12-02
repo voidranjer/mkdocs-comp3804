@@ -18,6 +18,26 @@ Case 1: $|K| \geq |M|$
 In this case, there are more hangout spots than there are friends. To optimize, we would compute the shortest path only as many times as there are **friends**.
 
 ```plaintext
+function DijkstraTerminateEarly(Graph, source):
+    for each vertex v in Graph.Vertices:
+        dist[v] ← INFINITY
+        prev[v] ← UNDEFINED
+        add v to Q
+    dist[source] ← 0
+   
+    while Q is not empty:
+        u ← vertex in Q with minimum dist[u]
+        remove u from Q
+       
+        for each neighbor v of u still in Q:
+            alt ← dist[u] + Graph.Edges(u, v)
+            if alt < dist[v]:
+                dist[v] ← alt
+                prev[v] ← u
+
+    return dist[], prev[]
+
+for each city 'm' in M:
 ```
 
 Case 2: $|K| < |M|$
@@ -26,6 +46,8 @@ In this case, there are more friends than there are hangout spots. To optimize, 
 
 ```plaintext
 ```
+
+Fibonacci Heaps
 
 Terminate when all k has been touched by a person's Dikstra during each iteration.
 Or terminatew when all persons have been touched, during a hangout spot's iteration.
