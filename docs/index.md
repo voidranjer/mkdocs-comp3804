@@ -51,3 +51,7 @@ Fibonacci Heaps
 
 Terminate when all k has been touched by a person's Dikstra during each iteration.
 Or terminatew when all persons have been touched, during a hangout spot's iteration.
+
+<https://stackoverflow.com/questions/50458834/dijkstra-time-complexity-using-binary-heap>
+<https://math.stackexchange.com/questions/3683910/time-complexity-of-dijkstras-algorithm>
+<https://stackoverflow.com/questions/26547816/understanding-time-complexity-calculation-for-dijkstra-algorithm>
