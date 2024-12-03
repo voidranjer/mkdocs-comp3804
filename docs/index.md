@@ -111,12 +111,58 @@ Remember that in the previous assignment, we have proved that the shortest dista
 The reason we are doing this is because this time, we are ^^starting Dijkstra's algorithm from the hangout spots^^ (instead of from each $m$), and we want to find the shortest path from the hangout spots to the friends. Without flipping the edges, the algorithm would be incorrect: Just because we can reach $m_i$ from $k_j$ does not mean we can reach $k_j$ from $m_i$.
 
 
-==TODO STILLLLL==
+In either case, we make use of ==Fibonacci Heaps== to optimize Dijkstra's algo.
 
-RUNTIME COMPLEXITY ANALYSIS
-Fibonacci Heaps
-Do not iterate through disconnected nodes
+**Complexity Analysis:**
 
+First, we recognize that Case B is guaranteed to be slower than Case A in the worst case, every single time we run it. This is because Case B does ostensibly the same things as Case A, but with added complexity to accomodate for edge reversals. This way, we can analyze the Big-Oh of Case B, and call it the Big-Oh of the entire algorithm.
+
+Now let's dive in.
+
+```plaintext
+// Flip the direction of each edge
+for each edge (u, v) in E:
+    E ← (v, u)
+```
+
+This is O(|E|). Because the question states that the number of edges is O(n), this is O(n).
+
+```plaintext
+for each city 'k' in K:
+    dist[], prev[] ← DijkstraTerminateEarly(Graph, k, M)
+    for city 'm' in dist:
+        if m in M:
+            m.dist[k] ← dist[m]
+```
+
+This is O(|K| * x), where x is the complexity of DijkstraTerminateEarly. Because DijkstraTerminateEarly is a lightly modified version of Dijkstra's algorithm that only adds a constant number of operations to each iteration, it has the same complexity as plain old Dijkstra's. Using Fibonacci Heaps, that is 0(|V| log |V| + |E|).
+
+Remember that we had stated that O(|E|) = O(n). The number of vertices is O(n), so the complexity of DijkstraTerminateEarly is O(n log n + n) = O(n log n).
+
+Because we run this for each city in K, the total complexity of this block is O(|K| * n log n).
+
+```plaintext
+// This point onwards is the same as the previous case
+highest_min_dist ← INFINITY
+meeting_spot ← UNDEFINED
+```
+
+Obviously, O(1).
+
+```plaintext
+for each city 'k' in K:
+    highest_min_dist_k ← -INFINITY
+    for each city 'm' in M:
+        if m.dist[k] > highest_min_dist_k:
+            highest_min_dist_k ← m.dist[k]
+    if highest_min_dist_k < highest_min_dist:
+        highest_min_dist ← highest_min_dist_k
+        meeting_spot ← k
+```
+
+This is O(|K| * |M|), which is O(m * k) because of the nested loops.
+
+Adding it all up, the total complexity of the algorithm is O(m*k + nlogn).
 
 ## Question 2
 
