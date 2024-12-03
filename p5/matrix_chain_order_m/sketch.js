@@ -1,17 +1,40 @@
-const p = [30, 35, 15, 5, 10, 20, 25];
+let p = [30, 35, 15, 5, 10, 20, 25];
 
 /* ---------------------------------------- */
 
 const SQUARE_DIM = 50;
-const n = p.length - 1;
 
-const SIDE_LENGTH = SQUARE_DIM * n;
-const results = matrixChainOrder(p, n);
+let n, side_length, results;
+
+function refreshGlobals(p) {
+  n = p.length - 1;
+  side_length = SQUARE_DIM * n;
+  results = matrixChainOrder(p, n);
+}
 
 function setup() {
   createCanvas(600, 600);
 
+  refreshGlobals(p);
+
+  // Input field
+  let input = createInput(p.join(", "));
+  input.position(20, 20);
+  input.size(200);
+  input.input(() => {
+    p = input
+      .value()
+      .split(",")
+      .map((x) => parseInt(x))
+      .filter((x) => !isNaN(x)); // Filter out any invalid integers
+    refreshGlobals(p);
+  });
+}
+
+function draw() {
   background(220);
+
+  // Title
   push();
   textSize(32);
   let title = "m";
@@ -66,5 +89,3 @@ function setup() {
     }
   }
 }
-
-function draw() {}
