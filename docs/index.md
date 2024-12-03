@@ -118,7 +118,7 @@ Fibonacci Heaps
 Do not iterate through disconnected nodes
 
 
-### Question 2
+## Question 2
 
 Find an optimal parameterization of a matrix-chain product whose sequence of dimensions is (3, 10, 2, 120, 5, 100, 4). Show the two solution matrices. How many different ways are there to evaluate this(!) matrix-chain product (i.e., different bracketings)?
 
@@ -166,6 +166,50 @@ $$
 $$
 
 **Therefore, the optimal parenthesization of the matrix-chain product is $(A_1 A_2)(((A_3 A_4) A_5)A_6)$. This is done at the minimum cost of 3084 scalar multiplications, which is the best of all 42 possible parenthesizations.**
+
+## Question 3
+
+![q3](q3.png)
+
+### Answer {#q3-ans}
+
+- Show the feasible region by plotting the constraints on the ($x_1$, $x_2$)-Cartesian coordinate system.
+
+![feasibility](feasibility.png)
+![desmos](desmos.png)
+
+---
+
+- Using your feasible region, find the optimal solution for this linear program. Is this the only solution? If yes, then explain why. If no, then state how many optimal solutions are there and justify your answer.
+
+**Vertices:** *in the format ($x_1$, $x_2$)*
+
+- (0, 5)
+- (2, 5)
+- (8, 2)
+- (10, 0)
+- (0, 0)
+
+**Objective Function:** $3x_1+5x_2$ (minimize)
+
+**Try each vertex:**
+
+- (0, 5): $3(0) + 5(5) = 25$
+- (2, 5): $3(2) + 5(5) = 31$
+- (8, 2): $3(8) + 5(2) = 34$
+- (10, 0): $3(10) + 5(0) = 30$
+- (0, 0): $3(0) + 5(0) = 0$
+
+**Optimal Solution:** (0, 0) with a value of 0.
+
+---
+
+- Enter the LP into an LP solver that you can get from the internet and show us the input and solution pages (via screen captures).
+
+![ad1](ad1.png)
+![ad2](ad2.png)
+![ad3](ad3.png)
+
 
 ## Useful Resources
 
