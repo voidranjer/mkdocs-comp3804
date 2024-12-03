@@ -113,8 +113,6 @@ The reason we are doing this is because this time, we are ^^starting Dijkstra's 
 
 ==TODO STILLLLL==
 
-LEI'S POINT
-
 RUNTIME COMPLEXITY ANALYSIS
 Fibonacci Heaps
 Do not iterate through disconnected nodes
@@ -135,7 +133,7 @@ The dimensions of the source matrices are given as follows:
 5. $A_5$: $5 \times 100$
 6. $A_6$: $100 \times 4$
 
-The number of different ways to evaluate a matrix-chain product is given by the **Catalan number**, with $n$ being the number of matrices, and $C_{n-1}$ being the number of possible parametrizations. We will take this for granted because this has been ^^proven in lectures^^. The Catalan number is given by the formula:
+The number of different ways to evaluate a matrix-chain product is given by the **Catalan number**, with $n$ being the number of matrices, and $C_{n-1}$ being the number of possible parenthesizations. We will take this for granted because this has been ^^proven in lectures^^. The Catalan number is given by the formula:
 
 $$
 C_n = \frac{1}{n+1} \binom{2n}{n}
