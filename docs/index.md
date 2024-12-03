@@ -210,6 +210,40 @@ $$
 ![ad2](ad2.png)
 ![ad3](ad3.png)
 
+## Question 4
+
+Suppose we have a polynomial-time reduction from Problem A to Problem B. Suppose further we know that Problem B has a polynomial-time solution.
+
+- What can we conclude about Problem A, if anything?
+
+If Problem A can be reduced to Problem B, we know that Problem B is more powerful than Problem A.
+
+**Meaning, Problem B is at least as hard as Problem A.** If Problem B has a polynomial-time solution, then Problem A must also have a polynomial-time solution.
+
+Thus, solving Problem A requires only:
+
+- **Polynomial time to reduce Problem A to Problem B**, and
+- **Polynomial time to solve Problem B**.
+
+**Therefore, the conclusion is thatt Problem A can also be solved in polynomial time**, implying that Problem A is in **P**.
+
+---
+
+- Suppose the polynomial-time reduction is now from Problem B to Problem A. What can we conclude about Problem A, if anything?
+
+This doesn't tell us much about Problem A at all, really. We are saying that **Problem A is at least as hard as Problem B** (and possibly even harder than Problem B).
+
+This is why just because Problem B can be solved in polynomial time, it doesn't necessarily mean that Problem A can be solved in polynomial time.
+
+It might be the case that Problem A is much harder than Problem B, and thus, it might not be in **P**.
+
+**In conclusion: From the polynomial-time reduction from Problem B to Problem A, we cannot directly conclude anything about the time complexity of Problem A. It might still be in P, NP, or harder (e.g., NP-hard, etc).**
+
+## Question 5
+
+We are considering the following problem: Does a given directed graph G have a spiked Hamiltonian cycle?. A spiked Hamiltonian cycle is a Hamiltonian cycle of all vertices of graph G except for one which must be joint to the cycle via a single edge (say directed from the vertex to the cycle). (So it sticks out) Reduce this problem to the problem of ﬁnding Hamiltonian cycles in directed graphs. The reduction needs to be polynomial; note you can call Hamiltonian Cycle problem a polynomial number of times. Carefully argue the correctness of your reduction. You are allowed to assume for this question that in any graph you consider the Hamiltonian cycle (if it exists) is unique (obviosuly, that is not true in general.)
+
+### Answer {#q5-ans}
 
 ## Useful Resources
 
