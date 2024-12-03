@@ -145,6 +145,28 @@ $$
 C_5 = \frac{1}{6} \binom{10}{5} = 42
 $$
 
+![alt text](image-2.png)
+
+Next, we will compute the $m$ and $s$, tables for the matrix-chain product. $m$ represents the minimum number of scalar multiplications needed to compute the matrix product, and $s$ represents the index at which the split should be made to achieve the minimum number of scalar multiplications *(as seen in the pseudocode above)*.
+
+For this, I have computed **by-hand** the $m$ and $s$ tables by following the algorithm in the textbook. As well, I have created some visualization tools using a Javascript graphics library ([$m$ table generator](https://editor.p5js.org/voidranjer/sketches/GMzhsXoEE), and [$s$ table generator](https://editor.p5js.org/voidranjer/sketches/uEHpbUJhz)) that can be used to verify and generate these table diagrams, as shown below. The source code that I wrote for these tools can be provided upon request.
+
+![alt text](image.png)
+![alt text](image-1.png)
+
+Then, by following the $s$ table, we can generate the optimal parenthesization of the matrix-chain product. The optimal parenthesization is as follows:
+
+$$
+\begin{align*}
+(A_1 A_2 A_3 A_4 A_5 A_6) \\
+(A_1 A_2) (A_3 A_4 A_5 A_6) \\
+(A_1 A_2) ((A_3 A_4 A_5) A_6) \\
+(A_1 A_2) (((A_3 A_4) A_5) A_6)
+\end{align*}
+$$
+
+**Therefore, the optimal parenthesization of the matrix-chain product is $(A_1 A_2)(((A_3 A_4) A_5)A_6)$. This is done at the minimum cost of 3084 scalar multiplications, which is the best of all 42 possible parenthesizations.**
+
 ## Useful Resources
 
 - <https://stackoverflow.com/questions/26547816/understanding-time-complexity-calculation-for-dijkstra-algorithm>

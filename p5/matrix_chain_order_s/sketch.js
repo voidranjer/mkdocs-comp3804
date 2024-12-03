@@ -4,7 +4,31 @@ let p = [30, 35, 15, 5, 10, 20, 25];
 
 const SQUARE_DIM = 50;
 
-let n, side_length, results;
+let n, side_length, results, output;
+
+function printOptimalParens(s, n) {
+  let stack = [{ i: 1, j: n }]; // Start with the full range (1 to n)
+  let result = "";
+
+  while (stack.length > 0) {
+    const { i, j } = stack.pop();
+
+    if (i === j) {
+      result += `A_${i}`;
+    } else {
+      // Enclose parentheses
+      result += "(";
+
+      // Simulate recursion: Push right and left parts of the split onto the stack
+      stack.push({ i: s[i][j] + 1, j }); // Right part
+      stack.push({ i, j: s[i][j] }); // Left part
+    }
+  }
+
+  // Close all unclosed parentheses
+  console.log(result);
+  return result;
+}
 
 function refreshGlobals(p) {
   n = p.length - 1;
@@ -29,6 +53,21 @@ function setup() {
       .filter((x) => !isNaN(x)); // Filter out any invalid integers
     refreshGlobals(p);
   });
+
+  // Create a button that calls `printOptimalParens(s,1,n)` when clicked
+  let button = createButton("Print optimal parens");
+  button.position(20, 50);
+  button.mousePressed(() => {
+    output.value("");
+    printOptimalParens(results.s, 1, n);
+  });
+
+  // Create a read only input field below button
+  output = createInput();
+  output.position(20, 80);
+  output.size(200);
+  output.attribute("readonly", true);
+  output.value("Output will appear here");
 }
 
 function draw() {
