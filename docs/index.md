@@ -291,6 +291,57 @@ We are considering the following problem: Does a given directed graph G have a s
 
 ### Answer {#q5-ans}
 
+For this question, we assume that the implementation of the graph G allows us access to the set of all vertices (and the correspending edges to each one), which we can iterate through in linear time.
+
+```plaintext linenums="1" hl_lines="1-14"
+num_potential_spikes ← 0
+spike_vertex ← UNDEFINED
+
+for each vertex v in G:
+    if degree(v) == 1:
+        num_potential_spikes ← num_potential_spikes + 1
+        spike_vertex ← v
+        if num_potential_spikes > 1:
+            break, and TERMINATE EARLY (returning "NO SPIKED HAMILTONIAN CYCLES") // cannot have more than 1 spike
+
+if num_potential_spikes == 0:
+    return "NO SPIKED HAMILTONIAN CYCLES" // no spikes
+
+G' ← G with spike_vertex removed
+
+if HamiltonianCycle(G') exists: // this runs in polynomial time
+    return "YES" // spiked Hamiltonian cycle exists
+else:
+    return "NO" // no spiked Hamiltonian cycle
+```
+
+Lines 1-14 of the pseudocode above describe the reduction from the spiked Hamiltonian cycle problem to the Hamiltonian cycle problem. The reduction works as follows:
+
+1. We iterate through all vertices of the graph G.
+2. For each vertex, we check if the degree of the vertex is 1. If it is, we increment the count of potential spikes and store the vertex as the spike vertex.
+3. If we find more than one potential spike, we terminate early and return "NO SPIKED HAMILTONIAN CYCLES" because a spiked Hamiltonian cycle cannot have more than one spike.
+4. If we find no potential spikes, we return "NO SPIKED HAMILTONIAN CYCLES" because a spiked Hamiltonian cycle must have a spike.
+5. We create a new graph G' by removing the spike vertex from G.
+6. We check if G' has a Hamiltonian cycle using the Hamiltonian cycle algorithm.
+7. If G' has a Hamiltonian cycle, we return "YES" because G has a spiked Hamiltonian cycle.
+8. If G' does not have a Hamiltonian cycle, we return "NO" because G does not have a spiked Hamiltonian cycle.
+
+We have to prove that there is a bijection between the set of spiked Hamiltonian cycles in G and the set of Hamiltonian cycles in G'. This is because the reduction is correct if and only if there is a one-to-one correspondence between the solutions of the original problem and the solutions of the reduced problem.
+
+![alt text](image-3.png)
+
+In order for a node to be part of a valid Hamiltonian cycle, **exactly two** of its edges has to be part of the set of edges that make up the complete Hamiltonian cycle. Note that we are ^^not^^ saying that it cannot have more than two edges; but only two of them can be part of the Hamiltonian cycle.
+
+We will also note that neither of these two Hamiltonian-involved edges can be the spike edge. This is because the spike edge connects the current vertex to an island vertex, and this is a dead end *(meaning it cannot be part of the Hamiltonian cycle)*.
+
+That means that the edge connecting the spike vertex to the Hamiltonian cycle can never be part of the Hamiltonian cycle. Because of this, **the removal of this "spike edge" will not affect the Hamiltonian cycle in any way**. Hence, we can transform the problem of finding a spiked Hamiltonian cycle into the problem of finding a Hamiltonian cycle by removing the spike vertex and its connecting edge, and we can guarantee that the solution to the reduced problem is a solution to the original problem.
+
+The illustration for this reduction:
+
+![alt text](machine.png)
+
+<iframe src="https://editor.p5js.org/voidranjer/full/GMzhsXoEE" width="600" height="600"></iframe>
+
 ## Useful Resources
 
 - <https://stackoverflow.com/questions/26547816/understanding-time-complexity-calculation-for-dijkstra-algorithm>
